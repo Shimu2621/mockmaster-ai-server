@@ -1,0 +1,232 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum SessionType {
+  IELTS_LISTENING
+  IELTS_READING
+  IELTS_SPEAKING
+  IELTS_WRITING
+  MOCK_INTERVIEW_TECHNICAL
+  MOCK_INTERVIEW_BEHAVIORAL
+  MOCK_INTERVIEW_INTERPERSONAL
+  QUIZ
+}
+
+enum QuestionType {
+  MCQ
+  OPEN_ENDED
+}
+
+enum IELTSWritingTaskType {
+  TASK1
+  TASK2
+}
+
+enum Difficulty {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model User {
+  id                    String                  @id @default(cuid())
+  email                 String                  @unique
+  name                  String?
+  password              String
+  avatarUrl             String?
+  role                  Role                    @default(USER)
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  sessions              Session[]
+  quizAttempts          QuizAttempt[]
+  writingSubmissions    WritingSubmission[]
+  userProgress          UserProgress[]
+  userCompletionHistory UserCompletionHistory[]
+}
+
+model Session {
+  id                    String                  @id @default(cuid())
+  user                  User                    @relation(fields: [userId], references: [id])
+  userId                String
+  type                  SessionType
+  startedAt             DateTime                @default(now())
+  endedAt               DateTime?
+  score                 Float?
+  transcript            String?
+  feedback              Json?
+  answers               Answer[]
+  writingSubmissions    WritingSubmission[]
+  aiChatConversations   AIChatConversation[]
+  userCompletionHistory UserCompletionHistory[]
+  customQuestions       CustomQuestion[]
+
+  @@index([userId])
+}
+
+model ListeningAudio {
+  id                    String                  @id @default(cuid())
+  title                 String
+  audioUrl              String
+  transcript            String
+  createdAt             DateTime                @default(now())
+  questions             Question[]
+  userCompletionHistory UserCompletionHistory[]
+}
+
+model ReadingPassage {
+  id                    String                  @id @default(cuid())
+  title                 String
+  content               String
+  createdAt             DateTime                @default(now())
+  questions             Question[]
+  userCompletionHistory UserCompletionHistory[]
+}
+
+model Question {
+  id               String           @id @default(cuid())
+  type             QuestionType
+  sessionType      SessionType
+  text             String
+  options          String[]
+  correctAnswer    String?
+  difficulty       Difficulty       @default(MEDIUM)
+  aiGenerated      Boolean          @default(false)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  listeningAudio   ListeningAudio?  @relation(fields: [listeningAudioId], references: [id])
+  listeningAudioId String?
+  readingPassage   ReadingPassage?  @relation(fields: [readingPassageId], references: [id])
+  readingPassageId String?
+  quizAttempt      QuizAttempt?     @relation(fields: [quizAttemptId], references: [id])
+  quizAttemptId    String?
+  answers          Answer[]
+  quizAnswers      QuizAnswer[]
+}
+
+model Answer {
+  id           String      @id @default(cuid())
+  session      Session     @relation(fields: [sessionId], references: [id])
+  sessionId    String
+  question     Question    @relation(fields: [questionId], references: [id])
+  questionId   String
+  answerText   String?
+  isCorrect    Boolean?
+  score        Float?
+  feedback     Json?
+  createdAt    DateTime    @default(now())
+
+  @@index([sessionId])
+}
+
+model QuizAttempt {
+  id           String      @id @default(cuid())
+  user         User        @relation(fields: [userId], references: [id])
+  userId       String
+  quizName     String
+  startedAt    DateTime    @default(now())
+  endedAt      DateTime?
+  score        Float?
+  feedback     Json?
+  createdAt    DateTime    @default(now())
+  quizAnswers  QuizAnswer[]
+  questions    Question[]
+}
+
+model QuizAnswer {
+  id             String      @id @default(cuid())
+  quizAttempt    QuizAttempt @relation(fields: [quizAttemptId], references: [id])
+  quizAttemptId  String
+  question       Question    @relation(fields: [questionId], references: [id])
+  questionId     String
+  selectedOption String?
+  answerText     String?
+  isCorrect      Boolean?
+  score          Float?
+  feedback       Json?
+  createdAt      DateTime    @default(now())
+
+  @@index([quizAttemptId])
+}
+
+model WritingTask {
+  id                 String              @id @default(cuid())
+  task               IELTSWritingTaskType
+  promptText         String
+  imageUrl           String?
+  difficulty         Difficulty?
+  writingSubmissions WritingSubmission[]
+}
+
+model WritingSubmission {
+  id            String      @id @default(cuid())
+  user          User        @relation(fields: [userId], references: [id])
+  userId        String
+  session       Session?    @relation(fields: [sessionId], references: [id])
+  sessionId     String?
+  writingTask   WritingTask @relation(fields: [writingTaskId], references: [id])
+  writingTaskId String
+  extractedText String?
+  score         Float?
+  feedback      Json?
+  createdAt     DateTime    @default(now())
+}
+
+model UserProgress {
+  id            String   @id @default(cuid())
+  user          User     @relation(fields: [userId], references: [id])
+  userId        String
+  date          DateTime
+  ieltsScore    Float?
+  interviewScore Float?
+  quizScore     Float?
+  createdAt     DateTime @default(now())
+
+  @@unique([userId, date])
+}
+
+model AIChatConversation {
+  id           String   @id @default(cuid())
+  session      Session  @relation(fields: [sessionId], references: [id])
+  sessionId    String
+  conversation Json
+  createdAt    DateTime @default(now())
+
+  @@index([sessionId])
+}
+
+model CustomQuestion {
+  id        String  @id @default(cuid())
+  text      String
+  sessionId String
+  session   Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  asked     Boolean @default(false)
+
+  @@index([sessionId])
+}
+
+model UserCompletionHistory {
+  id               String          @id @default(cuid())
+  user             User            @relation(fields: [userId], references: [id])
+  userId           String
+  listeningAudio   ListeningAudio? @relation(fields: [listeningAudioId], references: [id])
+  listeningAudioId String?
+  readingPassage   ReadingPassage? @relation(fields: [readingPassageId], references: [id])
+  readingPassageId String?
+  completedAt      DateTime        @default(now())
+  session          Session?        @relation(fields: [sessionId], references: [id])
+  sessionId        String?
+
+  @@unique([userId, listeningAudioId])
+  @@unique([userId, readingPassageId])
+}

@@ -31,6 +31,9 @@ const loginUserController = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+/**
+ * Retrieve a paginated list of users with optional filters.
+ */
 const getAllUsersController = catchAsync(async (req: Request, res: Response) => {
   const { page, limit, id, name, email } = req.query;
   const options: { page?: number; limit?: number; id?: string; name?: string; email?: string } = {};

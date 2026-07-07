@@ -52,6 +52,9 @@ const getAllUsersController = catchAsync(async (req: Request, res: Response) => 
   });
 });
 
+/**
+ * Update a user's role (Admin only).
+ */
 const changeUserRoleController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const { role } = req.body;

@@ -5,6 +5,9 @@ import httpStatus from 'http-status';
 import catchAsync from '@/app/utils/catchAsync';
 import { User } from '@prisma/client';
 
+/**
+ * Register a new user.
+ */
 const createUserController = catchAsync(async (req: Request, res: Response) => {
   const result = await UserServices.createUser(req.body);
 

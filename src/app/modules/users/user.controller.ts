@@ -101,6 +101,9 @@ const editProfileController = catchAsync(async (req: Request, res: Response) => 
   });
 });
 
+/**
+ * Allow the authenticated user to reset their password.
+ */
 const resetPasswordController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.user as User;
   const { oldPassword, newPassword } = req.body;

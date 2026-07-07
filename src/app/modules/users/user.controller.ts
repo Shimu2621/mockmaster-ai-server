@@ -72,6 +72,9 @@ const changeUserRoleController = catchAsync(async (req: Request, res: Response) 
   });
 });
 
+/**
+ * Retrieve the authenticated user's profile.
+ */
 const getProfileController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.user as User;
 

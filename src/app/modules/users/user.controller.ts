@@ -87,6 +87,9 @@ const getProfileController = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+/**
+ * Update the authenticated user's profile.
+ */
 const editProfileController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.user as User;
   const result = await UserServices.editProfile(id, req.body);

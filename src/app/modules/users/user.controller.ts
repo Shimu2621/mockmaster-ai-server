@@ -18,6 +18,9 @@ const createUserController = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+/**
+ * Authenticate a user and return login information.
+ */
 const loginUserController = catchAsync(async (req: Request, res: Response) => {
   const result = await UserServices.loginUser(req.body);
 

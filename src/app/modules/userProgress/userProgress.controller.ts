@@ -35,6 +35,9 @@ const getAllUserProgressController = catchAsync(async (req: Request, res: Respon
   });
 });
 
+/**
+ * Retrieve a single user progress record by its ID.
+ */
 const getSingleUserProgressController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

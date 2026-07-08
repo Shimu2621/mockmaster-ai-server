@@ -56,6 +56,9 @@ const getSingleUserProgressController = catchAsync(async (req: Request, res: Res
   });
 });
 
+/**
+ * Update an existing user progress record.
+ */
 const updateUserProgressController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

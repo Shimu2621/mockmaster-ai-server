@@ -16,6 +16,9 @@ const createUserProgressController = catchAsync(async (req: Request, res: Respon
   });
 });
 
+/**
+ * Retrieve all user progress records with optional pagination and filtering.
+ */
 const getAllUserProgressController = catchAsync(async (req: Request, res: Response) => {
   const { page, limit, userId } = req.query;
   const options: { page?: number; limit?: number; userId?: string } = {};

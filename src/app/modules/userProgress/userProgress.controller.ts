@@ -4,6 +4,9 @@ import { UserProgressServices } from './userProgress.services';
 import catchAsync from '@/app/utils/catchAsync';
 import { ApiError } from '@/app/errors/apiError';
 
+/**
+ * Create a new user progress record.
+ */
 const createUserProgressController = catchAsync(async (req: Request, res: Response) => {
   const result = await UserProgressServices.createUserProgress(req.body);
   res.status(httpStatus.CREATED).json({

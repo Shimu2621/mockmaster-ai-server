@@ -88,6 +88,9 @@ const deleteUserProgressController = catchAsync(async (req: Request, res: Respon
   });
 });
 
+/**
+ * Export all user progress controller methods.
+ */
 export const UserProgressController = {
   createUserProgressController,
   getAllUserProgressController,

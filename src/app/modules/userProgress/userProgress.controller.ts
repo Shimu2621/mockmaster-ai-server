@@ -72,6 +72,9 @@ const updateUserProgressController = catchAsync(async (req: Request, res: Respon
   });
 });
 
+/**
+ * Delete a user progress record.
+ */
 const deleteUserProgressController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

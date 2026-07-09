@@ -36,6 +36,9 @@ const getAllWritingSubmissionsController = catchAsync(async (req: Request, res: 
   });
 });
 
+/**
+ * Retrieve a single writing submission by ID.
+ */
 const getSingleWritingSubmissionController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

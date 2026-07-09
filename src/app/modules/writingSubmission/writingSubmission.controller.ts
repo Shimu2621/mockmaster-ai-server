@@ -16,6 +16,9 @@ const createWritingSubmissionController = catchAsync(async (req: Request, res: R
   });
 });
 
+/**
+ * Retrieve all writing submissions with optional pagination and filtering.
+ */
 const getAllWritingSubmissionsController = catchAsync(async (req: Request, res: Response) => {
   const { page, limit, userId, sessionId } = req.query;
   const options: { page?: number; limit?: number; userId?: string; sessionId?: string } = {};

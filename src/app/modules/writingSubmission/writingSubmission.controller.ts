@@ -57,6 +57,9 @@ const getSingleWritingSubmissionController = catchAsync(async (req: Request, res
   });
 });
 
+/**
+ * Update an existing writing submission.
+ */
 const updateWritingSubmissionController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

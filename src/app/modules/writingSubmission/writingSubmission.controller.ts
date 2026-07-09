@@ -4,6 +4,9 @@ import { WritingSubmissionServices } from './writingSubmission.services';
 import catchAsync from '@/app/utils/catchAsync';
 import { ApiError } from '@/app/errors/apiError';
 
+/**
+ * Create a new writing submission.
+ */
 const createWritingSubmissionController = catchAsync(async (req: Request, res: Response) => {
   const result = await WritingSubmissionServices.createWritingSubmission(req.body);
   res.status(httpStatus.CREATED).json({

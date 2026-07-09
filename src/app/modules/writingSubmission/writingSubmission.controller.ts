@@ -89,6 +89,9 @@ const deleteWritingSubmissionController = catchAsync(async (req: Request, res: R
   });
 });
 
+/**
+ * Export all writing submission controllers.
+ */
 export const WritingSubmissionController = {
   createWritingSubmissionController,
   getAllWritingSubmissionsController,

@@ -73,6 +73,9 @@ const updateWritingSubmissionController = catchAsync(async (req: Request, res: R
   });
 });
 
+/**
+ * Delete a writing submission by ID.
+ */
 const deleteWritingSubmissionController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

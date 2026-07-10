@@ -17,6 +17,10 @@ const createAnswerController = catchAsync(async (req: Request, res: Response) =>
   });
 });
 
+/**
+ * Retrieve all answers.
+ * Supports pagination and filtering by session ID.
+ */
 const getAllAnswersController = catchAsync(async (req: Request, res: Response) => {
   const { page, limit, sessionId } = req.query;
   const options: { page?: number; limit?: number; sessionId?: string } = {};

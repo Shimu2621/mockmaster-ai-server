@@ -4,6 +4,10 @@ import { AnswerServices } from './answer.services';
 import catchAsync from '@/app/utils/catchAsync';
 import { ApiError } from '@/app/errors/apiError';
 
+/**
+ * Create a new answer.
+ * Receives answer data from the request body and stores it in the database.
+ */
 const createAnswerController = catchAsync(async (req: Request, res: Response) => {
   const result = await AnswerServices.createAnswer(req.body);
   res.status(httpStatus.CREATED).json({

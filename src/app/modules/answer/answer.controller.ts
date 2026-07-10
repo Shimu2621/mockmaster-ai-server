@@ -37,6 +37,9 @@ const getAllAnswersController = catchAsync(async (req: Request, res: Response) =
   });
 });
 
+/**
+ * Retrieve a single answer by its ID.
+ */
 const getSingleAnswerController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

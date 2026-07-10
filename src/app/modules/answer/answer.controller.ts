@@ -58,6 +58,9 @@ const getSingleAnswerController = catchAsync(async (req: Request, res: Response)
   });
 });
 
+/**
+ * Update an existing answer by its ID.
+ */
 const updateAnswerController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

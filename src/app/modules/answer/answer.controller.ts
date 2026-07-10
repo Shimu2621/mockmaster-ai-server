@@ -74,6 +74,9 @@ const updateAnswerController = catchAsync(async (req: Request, res: Response) =>
   });
 });
 
+/**
+ * Delete an answer by its ID.
+ */
 const deleteAnswerController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

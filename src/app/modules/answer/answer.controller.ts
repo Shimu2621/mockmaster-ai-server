@@ -90,6 +90,9 @@ const deleteAnswerController = catchAsync(async (req: Request, res: Response) =>
   });
 });
 
+/**
+ * Export all answer controllers.
+ */
 export const AnswerController = {
   createAnswerController,
   getAllAnswersController,

@@ -16,6 +16,9 @@ const createListeningAudioController = catchAsync(async (req: Request, res: Resp
   });
 });
 
+/**
+ * Retrieve all listening audios.
+ */
 const getAllListeningAudiosController = catchAsync(async (req: Request, res: Response) => {
   const { page, limit } = req.query;
   const options: { page?: number; limit?: number; userId?: string } = {};

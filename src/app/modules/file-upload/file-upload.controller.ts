@@ -4,6 +4,9 @@ import catchAsync from '@/app/utils/catchAsync';
 import { uploadToCloudinary } from '@/app/lib/multer';
 import { ApiError } from '@/app/errors/apiError';
 
+/**
+ * Upload one or multiple files to Cloudinary.
+ */
 const uploadFileController = catchAsync(async (req: Request, res: Response) => {
   try {
     let urls: string[] = [];

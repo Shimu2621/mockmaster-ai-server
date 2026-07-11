@@ -4,6 +4,9 @@ import { ListeningAudioServices } from './listeningAudio.services';
 import catchAsync from '@/app/utils/catchAsync';
 import { ApiError } from '@/app/errors/apiError';
 
+/**
+ * Create a new listening audio.
+ */
 const createListeningAudioController = catchAsync(async (req: Request, res: Response) => {
   const result = await ListeningAudioServices.createListeningAudio(req.body);
   res.status(httpStatus.CREATED).json({

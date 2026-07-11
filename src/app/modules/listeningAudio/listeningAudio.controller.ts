@@ -38,6 +38,9 @@ const getAllListeningAudiosController = catchAsync(async (req: Request, res: Res
   });
 });
 
+/**
+ * Retrieve a single listening audio by its ID.
+ */
 const getSingleListeningAudioController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

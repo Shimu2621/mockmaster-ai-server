@@ -91,6 +91,9 @@ const deleteListeningAudioController = catchAsync(async (req: Request, res: Resp
   });
 });
 
+/**
+ * Export all listening audio controllers.
+ */
 export const ListeningAudioController = {
   createListeningAudioController,
   getAllListeningAudiosController,

@@ -75,6 +75,9 @@ const updateListeningAudioController = catchAsync(async (req: Request, res: Resp
   });
 });
 
+/**
+ * Delete a listening audio by its ID.
+ */
 const deleteListeningAudioController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

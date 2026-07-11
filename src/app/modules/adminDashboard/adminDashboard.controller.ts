@@ -17,6 +17,9 @@ const getAdminDashboardData = catchAsync(async (req: Request, res: Response) => 
   });
 });
 
+/**
+ * Export all admin dashboard controllers.
+ */
 export const AdminDashboardController = {
   getAdminDashboardData,
 };

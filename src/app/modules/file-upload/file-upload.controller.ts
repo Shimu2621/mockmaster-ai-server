@@ -37,6 +37,9 @@ const uploadFileController = catchAsync(async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * Export all file upload controllers.
+ */
 export const FileUploadController = {
   uploadFileController,
 };

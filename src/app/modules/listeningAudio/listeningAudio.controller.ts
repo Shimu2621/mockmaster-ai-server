@@ -59,6 +59,9 @@ const getSingleListeningAudioController = catchAsync(async (req: Request, res: R
   });
 });
 
+/**
+ * Update an existing listening audio by its ID.
+ */
 const updateListeningAudioController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

@@ -18,7 +18,11 @@ const createQuestionController = catchAsync(async (req: Request, res: Response) 
     data: result,
   });
 });
-
+/**
+ * Retrieve all questions.
+ * Supports pagination and filtering by session type, listening audio,
+ * reading passage, and quiz attempt.
+ */
 const getAllQuestionsController = catchAsync(async (req: Request, res: Response) => {
   const { sessionType, listeningAudioId, readingPassageId, quizAttemptId, page, limit } = req.query;
   const filters: IQuestionFilters = {};
@@ -38,6 +42,9 @@ const getAllQuestionsController = catchAsync(async (req: Request, res: Response)
   });
 });
 
+/**
+ * Retrieve a single question by its ID.
+ */
 const getSingleQuestionController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

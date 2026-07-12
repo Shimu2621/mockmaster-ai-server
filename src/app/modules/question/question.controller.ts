@@ -6,6 +6,10 @@ import { ApiError } from '@/app/errors/apiError';
 import { SessionType } from '@prisma/client';
 import { IQuestionFilters } from './question.interface';
 
+/**
+ * Create a new question.
+ * Receives question data from the request body and saves it to the database.
+ */
 const createQuestionController = catchAsync(async (req: Request, res: Response) => {
   const result = await QuestionServices.createQuestion(req.body);
   res.status(httpStatus.CREATED).json({

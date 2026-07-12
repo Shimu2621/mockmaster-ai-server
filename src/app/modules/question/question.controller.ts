@@ -92,6 +92,10 @@ const deleteQuestionController = catchAsync(async (req: Request, res: Response) 
   });
 });
 
+/**
+ * Generate AI-powered questions.
+ * Creates questions based on the provided prompt and associated resources.
+ */
 const generateQuestionsController = catchAsync(async (req: Request, res: Response) => {
   const {
     promptText,
@@ -116,6 +120,9 @@ const generateQuestionsController = catchAsync(async (req: Request, res: Respons
   });
 });
 
+/**
+ * Export all question controllers.
+ */
 export const QuestionController = {
   createQuestionController,
   getAllQuestionsController,

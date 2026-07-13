@@ -60,6 +60,9 @@ const getSingleReadingPassageController = catchAsync(async (req: Request, res: R
   });
 });
 
+/**
+ * Update an existing reading passage by its ID.
+ */
 const updateReadingPassageController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {
@@ -73,6 +76,9 @@ const updateReadingPassageController = catchAsync(async (req: Request, res: Resp
   });
 });
 
+/**
+ * Delete a reading passage by its ID.
+ */
 const deleteReadingPassageController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

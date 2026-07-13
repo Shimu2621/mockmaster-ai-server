@@ -17,6 +17,10 @@ const createReadingPassageController = catchAsync(async (req: Request, res: Resp
   });
 });
 
+/**
+ * Retrieve all reading passages.
+ * Supports pagination and filters results by the authenticated user.
+ */
 const getAllReadingPassagesController = catchAsync(async (req: Request, res: Response) => {
   const { page, limit } = req.query;
   const options: { page?: number; limit?: number; userId?: string } = {};

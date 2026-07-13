@@ -39,6 +39,9 @@ const getAllReadingPassagesController = catchAsync(async (req: Request, res: Res
   });
 });
 
+/**
+ * Retrieve a single reading passage by its ID.
+ */
 const getSingleReadingPassageController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

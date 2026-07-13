@@ -4,6 +4,10 @@ import { ReadingPassageServices } from './readingPassage.services';
 import catchAsync from '@/app/utils/catchAsync';
 import { ApiError } from '@/app/errors/apiError';
 
+/**
+ * Create a new reading passage.
+ * Receives passage data from the request body and stores it in the database.
+ */
 const createReadingPassageController = catchAsync(async (req: Request, res: Response) => {
   const result = await ReadingPassageServices.createReadingPassage(req.body);
   res.status(httpStatus.CREATED).json({

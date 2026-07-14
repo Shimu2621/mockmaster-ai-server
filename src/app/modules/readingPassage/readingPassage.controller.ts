@@ -92,9 +92,7 @@ const deleteReadingPassageController = catchAsync(async (req: Request, res: Resp
   });
 });
 
-/**
- * Export all reading passage controllers.
- */
+
 export const ReadingPassageController = {
   createReadingPassageController,
   getAllReadingPassagesController,

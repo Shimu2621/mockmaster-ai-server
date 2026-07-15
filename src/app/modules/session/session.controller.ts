@@ -6,6 +6,10 @@ import { ApiError } from '@/app/errors/apiError';
 
 import { User } from '@prisma/client';
 
+/**
+ * Create a new session.
+ * Associates the session with the authenticated user.
+ */
 const createSessionController = catchAsync(async (req: Request, res: Response) => {
   const { id: userId } = req.user as User;
   const result = await SessionServices.createSession(userId, req.body);

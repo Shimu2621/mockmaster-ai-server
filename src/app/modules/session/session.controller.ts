@@ -62,6 +62,9 @@ const getSingleSessionController = catchAsync(async (req: Request, res: Response
   });
 });
 
+/**
+ * Update an existing session by its ID.
+ */
 const updateSessionController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

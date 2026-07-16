@@ -41,6 +41,9 @@ const getAllSessionsController = catchAsync(async (req: Request, res: Response) 
   });
 });
 
+/**
+ * Retrieve a single session by its ID.
+ */
 const getSingleSessionController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

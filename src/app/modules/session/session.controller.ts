@@ -94,6 +94,9 @@ const deleteSessionController = catchAsync(async (req: Request, res: Response) =
   });
 });
 
+/**
+ * Export all session controllers.
+ */
 export const SessionController = {
   createSessionController,
   getAllSessionsController,

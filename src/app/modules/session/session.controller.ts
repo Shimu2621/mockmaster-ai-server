@@ -78,6 +78,9 @@ const updateSessionController = catchAsync(async (req: Request, res: Response) =
   });
 });
 
+/**
+ * Delete a session by its ID.
+ */
 const deleteSessionController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   if (!id) {

@@ -20,6 +20,10 @@ const createSessionController = catchAsync(async (req: Request, res: Response) =
   });
 });
 
+/**
+ * Retrieve all sessions.
+ * Supports pagination and optional filtering by user ID and session type.
+ */
 const getAllSessionsController = catchAsync(async (req: Request, res: Response) => {
   const { page, limit, userId, type } = req.query;
   const options: { page?: number; limit?: number; userId?: string; type?: string } = {};

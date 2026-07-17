@@ -26,6 +26,10 @@ const uploadQuestionsController = catchAsync(async (req: Request, res: Response)
   });
 });
 
+/**
+ * Handle AI mock interview conversation.
+ * Sends the conversation history to the AI and returns the generated response.
+ */
 const chatController = catchAsync(async (req: Request, res: Response) => {
   const { sessionId } = req.params;
   if (!sessionId) {

@@ -3,6 +3,10 @@ import httpStatus from 'http-status';
 import catchAsync from '@/app/utils/catchAsync';
 import { MockInterviewServices } from './mock-interview.services';
 
+/**
+ * Upload interview questions for a specific session.
+ * Accepts a file containing interview questions and processes it.
+ */
 const uploadQuestionsController = catchAsync(async (req: Request, res: Response) => {
   const { sessionId } = req.params;
   if (!sessionId) {
